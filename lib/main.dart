@@ -119,16 +119,18 @@ class _MyHomePageState extends State<MyHomePage> {
               return ResponseContent.success(await loadAsset(files[i]));
             }(),
             builder: (snap) {
-              return Stack(
+              return Column(
                 children: [
-                  HtmlWidget(
-                    snap??'加载',
-                    textStyle: TextStyle(color: Colors.white),
-                  ),
                   Align(
                     alignment: Alignment.bottomRight,
                     child: Text('${i} of ${files.length}',style: TextStyle(color: Colors.grey),),
-                  )
+                  ),
+
+                  HtmlWidget(
+                    snap??'发生错误',
+                    textStyle: TextStyle(color: Colors.grey),
+                  ),
+
                 ],
               );
             }
@@ -138,6 +140,16 @@ class _MyHomePageState extends State<MyHomePage> {
         },)
 
       )// This trailing comma makes auto-formatting nicer for build methods.
+      ,floatingActionButton: FloatingActionButton(
+      child: Icon(Icons.shuffle),
+      tooltip: 'shuffle data',
+      onPressed: (){
+        files.shuffle();
+        setState(() {
+
+        });
+      },
+    ),
     );
   }
 }
