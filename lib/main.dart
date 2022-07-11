@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'FeedBack',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -119,9 +119,17 @@ class _MyHomePageState extends State<MyHomePage> {
               return ResponseContent.success(await loadAsset(files[i]));
             }(),
             builder: (snap) {
-              return HtmlWidget(
-                snap??'加载',
-                textStyle: TextStyle(color: Colors.white),
+              return Stack(
+                children: [
+                  HtmlWidget(
+                    snap??'加载',
+                    textStyle: TextStyle(color: Colors.white),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text('${i} of ${files.length}',style: TextStyle(color: Colors.grey),),
+                  )
+                ],
               );
             }
           );
