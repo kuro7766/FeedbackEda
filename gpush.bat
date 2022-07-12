@@ -1,0 +1,1 @@
+proxy git push -u origin master

@@ -115,6 +115,18 @@ class _MyHomePageState extends State<MyHomePage> {
         child:
         ListView.separated(itemBuilder: (c,i){
           return SimpleFutureBuilder(
+            loadingWidget: ConstrainedBox(
+              constraints: new BoxConstraints(
+                minHeight: 500.0,
+              ),
+              child: Center(
+                  child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: SizedBox(
+                          width: 30,
+                          height: 30,
+                          child: CircularProgressIndicator()))),
+            ),
             future: ()async{
               return ResponseContent.success(await loadAsset(files[i]));
             }(),
@@ -127,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
 
                   HtmlWidget(
-                    snap??'发生错误',
+                    snap??'error',
                     textStyle: TextStyle(color: Colors.grey),
                   ),
 
