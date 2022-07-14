@@ -128,6 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: CircularProgressIndicator()))),
             ),
             future: ()async{
+              await Future.delayed(Duration(seconds: 1));
               return ResponseContent.success(await loadAsset(files[i]));
             }(),
             builder: (snap) {
